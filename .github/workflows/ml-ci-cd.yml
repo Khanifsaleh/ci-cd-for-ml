@@ -36,6 +36,9 @@ jobs:
       - name: Model Training
         run: python train.py
 
+      - name: Data Test Generation
+        run: python generate_test_data.py
+
       - name: Model Testing
         run: python test.py
 
