@@ -1,4 +1,6 @@
 from flask import Flask
+import joblib
+model = joblib.load('trained_model.joblib')
 
 # Create a Flask app
 app = Flask(__name__)
@@ -7,6 +9,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/get_model_name', methods=['GET'])
+def get_model_name():
+    return type(model).__name__
 
 # Run the app if this file is executed
 if __name__ == '__main__':
