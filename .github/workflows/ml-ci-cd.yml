@@ -10,7 +10,7 @@ on:
       - main
 
 env:
-  PORT:80
+  PORT: 80
 
 jobs:
   train and deploy:
