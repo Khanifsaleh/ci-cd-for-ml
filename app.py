@@ -1,6 +1,5 @@
 from flask import Flask
 import joblib
-model = joblib.load('trained_model.joblib')
 
 # Create a Flask app
 app = Flask(__name__)
