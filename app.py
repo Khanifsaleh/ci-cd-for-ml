@@ -16,4 +16,3 @@ def get_model_name():
 # Run the app if this file is executed
 if __name__ == '__main__':
     app.run()
-
