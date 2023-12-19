@@ -62,7 +62,7 @@ on:
       - main
 
 env:
-  container_name: flask-server
+  CONTAINER_NAME: flask-server
 
 jobs:
   build-and-deploy:
@@ -98,7 +98,7 @@ jobs:
           key: ${{secrets.AZURE_SSH_PRIVATE_KEY}}  # Use the SSH_PRIVATE_KEY secret for authentication
           passphrase: ''  # Add passphrase if your SSH key is encrypted
           script: |
-            docker stop {{env.container_name}} || true
-            docker rm {{env.container_name}} || true
+            docker stop ${{env.CONTAINER_NAME}} || true
+            docker rm ${{env.CONTAINER_NAME}} || true
             docker pull khanifregistry.azurecr.io/flask-app:latest
-            docker run -d -p 80:80 --name {{env.container_name}} khanifregistry.azurecr.io/flask-app:latest
+            docker run -d -p 80:80 --name ${{env.CONTAINER_NAME}} khanifregistry.azurecr.io/flask-app:latest
