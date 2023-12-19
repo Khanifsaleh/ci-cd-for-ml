@@ -75,12 +75,14 @@ jobs:
       - name: Log into Azure VM
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{secrets.AZURE_CREDENTIALS}}
 
       - name: Set up Docker
         uses: azure/docker-login@v1
         with:
           login-server: khanifregistry.azurecr.io  # Replace with your Docker registry URL
+          username: ${{secrets.AZURE_CR_USERNAME}}
+          password: ${{secrets.AZURE_CR_PASSWORD}}
 
       - name: Build and push Docker image
         run: |
@@ -92,8 +94,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: "4.230.17.53"
-          username: ${{ secrets.AZURE_SSH_USERNAME }}
-          key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}  # Use the SSH_PRIVATE_KEY secret for authentication
+          username: ${{secrets.AZURE_SSH_USERNAME}}
+          key: ${{secrets.AZURE_SSH_PRIVATE_KEY}}  # Use the SSH_PRIVATE_KEY secret for authentication
           passphrase: ''  # Add passphrase if your SSH key is encrypted
           script: |
             docker stop {{env.container_name}} || true
