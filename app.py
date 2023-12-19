@@ -11,7 +11,7 @@ def hello_world():
 
 @app.route('/get_model_name', methods=['GET'])
 def get_model_name():
-    return type(model).__name__
+    return 'get_model_name'
 
 # Run the app if this file is executed
 if __name__ == '__main__':
