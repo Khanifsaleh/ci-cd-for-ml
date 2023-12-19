@@ -98,6 +98,7 @@ jobs:
           key: ${{secrets.AZURE_SSH_PRIVATE_KEY}}  # Use the SSH_PRIVATE_KEY secret for authentication
           passphrase: ''  # Add passphrase if your SSH key is encrypted
           script: |
+            docker login khanifregistry.azurecr.io -u ${{secrets.AZURE_CR_USERNAME}} -p ${{secrets.AZURE_CR_PASSWORD}}
             docker stop ${{env.CONTAINER_NAME}} || true
             docker rm ${{env.CONTAINER_NAME}} || true
             docker pull khanifregistry.azurecr.io/flask-app:latest
